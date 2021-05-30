@@ -1,0 +1,216 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+using namespace std;
+
+int opcion;
+int x,n, total;
+ struct reservacion{ 
+	                                               
+    string nombre;
+  	int numHabitacion;
+};
+
+void MostrarPrecios()
+{
+			system("cls");
+			cout<<"\n MOSTRANDO PRECIOS  "<<endl;
+	
+			int habitacion;
+			
+			cout<<"\n Le ofrecemos las siguientes opciones: \n "<<endl;
+			cout<<"-Habitaciones primera clase\n"<<endl;
+			cout<<"1. Hospedaje para una persona--------Q250.00"<<endl;
+			cout<<"2. Hospedaje para dos personas-------Q500.00"<<endl;
+			cout<<"3. Hospedaje para tres personas------Q700.00"<<endl;
+			cout<<"4. Hospedaje para cuatro personas----Q825.00"<<endl;
+			cout<<""<<endl;
+			cout<<"\nPresione una tecla para volver al menu: ";		
+		
+		
+		
+			system("pause");
+}
+
+void primeraClase()
+{
+	system("cls");
+	int respuesta;
+	
+	do
+	{
+			int cantidad;
+			
+			cout<<"\n PRIMERA CLASE "<<endl;
+			
+			cout<<".......... ¿ CUANTOS RESERVACIONES SE HARAN ?....."<<endl;  
+			cin>>cantidad;
+			
+			
+			struct reservacion datos[cantidad];
+			
+			for( int i=0; i<cantidad; i++)
+			{
+				cout<<" ______________________________"<<endl;
+				cout<<"|                              |"<<endl;
+				cout<<"|      NUEVA RESERVACION       |"<<endl;
+				cout<<"|______________________________|"<<endl;
+				cout<<"    INGRESE LOS DATOS SIGUIENTES   "<<endl;
+				cout<<""<<endl;
+				cout<<"   NOMBRE CLIENTE:       "<<endl; 
+				cin>>datos[i].nombre;
+				cout<<""<<endl;
+				cout<<"   NUMERO DE HABITACION: "<<endl; 
+				cin>>datos[i].numHabitacion;
+				cout<<""<<endl;
+				cout<<"Registro Almacenado......"<<endl;
+				cout<<""<<endl;
+				
+				fstream GuardarArchivo;
+    			GuardarArchivo.open("primeraClase.txt",ios::out|ios::app);   
+	
+		    	if(GuardarArchivo.is_open()) 
+		    	{
+		    		GuardarArchivo<<" "<<datos[i].nombre<<" "<<datos[i].numHabitacion<<endl; 
+				}
+				else
+				{
+						cout<<"  ERROR EN EL ARCHVIO  "<<endl; 
+				}
+			}
+			
+				cout<<".. Desea Hacer mas registros ?......"<<endl;
+				cout<<" 1) SI...  2) NO... ";
+				cin>>respuesta;	
+		
+	}while(respuesta==1); 
+	
+}
+
+void Reservaciones()
+{
+			system("cls");
+			
+			do
+			{
+				cout<<"\n\nSistema Automatico de reservaciones\n\n";
+			
+				cout<<"\n SELECCIONA UNA DE NUESTRAS OPCIONES\n"; 
+	            cout<<"\n 1) Primera clase\"\n";
+	            cout<<"\n 2) Volver al menu\"\n";
+	            cin>>opcion;
+	            
+	            switch(opcion)
+	            {
+	            	case 1:
+	            		primeraClase();
+	            		break;
+				}
+            
+			}while(opcion<2);
+            
+            system("pause");
+}
+
+
+
+int main()
+{
+	do
+	{
+		
+		system("cls");
+		
+		cout<<"--------Hotel Kayak-------"<<endl;
+		cout<<"\t Bienvenido al Menu: "<<endl;
+		cout<<"1. Precios de habitaciones"<<endl;
+		cout<<"2. Realizar reservacion"<<endl;
+		cout<<"3. Ir a la cafeteria"<<endl;
+		cout<<"4. Salir"<<endl;
+		
+		cout<<"\nSeleccione una opcion: "<<endl;
+	    cin>>opcion;
+	    
+    	switch(opcion)
+    	{
+    		case 1:
+    			MostrarPrecios();
+    			break;
+    			
+    			case 2:
+    				Reservaciones();
+    				break;
+    				
+    				case 3:
+    	
+									cout<<"Bienvenido a la Cafeteria"<<endl;
+			cout<<"Nuestro menu es el siguiente"<<endl;
+			cout<<"1. Pollo---------------------Q25.00 "<<endl;
+			cout<<"2. Chuchitos-----------------Q15.00"<<endl;
+			cout<<"3. Rellenitos----------------Q10.00"<<endl;
+			cout<<"4. Macarrones con queso------Q35.00"<<endl;
+			cout<<"5. Pizza---------------------Q40.00"<<endl;
+			cout<<"Ingrese el numero de la comida que desea: ";
+			cin>>x;
+					
+			cout<<"Cuantos  desea comprar? ";
+			cin>>n;
+
+					if(x==1)
+					{													
+						total=n*25; 
+						cout<<"\nEl total del pollo: Q"<<total<<endl; 
+						cout<<"\n\tBuen provecho!"<<endl;				
+					fstream registrar_clientes;
+    	registrar_clientes.open("clientes.txt",ios::out|ios::app);   
+					} else 
+					
+					{	
+						if(x==2)
+						{
+							total=n*15;
+							cout<<"\nEl total de los chuchitos: Q"<<total<<endl;
+							cout<<"\n\tBuen provecho!"<<endl;				
+						} else
+						{
+							if(x==3)
+							{
+							total=n*10;
+							cout<<"\nEl total de los rellenitos: Q"<<total<<endl;
+							cout<<"\n\tBuen provecho!"<<endl;				
+							} else
+							{ 
+								if(x==4)
+								{
+								total=n*35;
+								cout<<"\nEl total de los macarrones con queso: Q"<<total<<endl;
+								cout<<"\n\tBuen provecho!"<<endl;				
+								} else
+								{
+									if(x==5)
+									{
+									total=n*40;
+									cout<<"\nEl total de la pizza es de: Q"<<total<<endl;
+									cout<<"\n\tBuen provecho!"<<endl;				
+									} 
+									}	
+								}	
+							}
+						}
+					 
+		
+			system("pause>nul");
+    					break;
+		}
+		
+	}while(opcion<3);
+	
+	
+	system("pause");
+	
+	return 0;
+}
+
+
+
